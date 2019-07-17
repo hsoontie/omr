@@ -2684,8 +2684,8 @@ class ARM64SynchronizationInstruction : public TR::Instruction
 
    void insertImmediateField(uint32_t *instruction)
       {
-      TR_ASSERT(_sourceImmediate < 0xF, "Immediate value exceeds 4 bits.");
-      *instruction |= (_sourceImmediate << 8);
+      TR_ASSERT(_sourceImmediate <= 0xF, "Immediate value exceeds 4 bits.");
+      *instruction |= ((_sourceImmediate & 0xF) << 8);
       }
 
    /**
